@@ -1,6 +1,6 @@
 from typing import Any, Type
 
-from data.transformation.interfaces import DataTransformation
+from biofid.data.transformation.interfaces import DataTransformation
 
 
 def transform(data: Any, transformation: Type[DataTransformation], **kwargs) -> Any:

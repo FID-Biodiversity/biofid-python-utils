@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple, Type
 
-from data.transformation.interfaces import DataTransformation
+from biofid.data.transformation.interfaces import DataTransformation
 
 
 @dataclass

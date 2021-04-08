@@ -1,6 +1,5 @@
 from tests.base import NoDatabaseTestCase
-from data.transformation import graph_data_transformations
-
+from biofid.data.transformation import graph_data_transformations
 
 data = [
     {'value': '1234', 'datatype': 'http://www.w3.org/2001/XMLSchema#string', 'type': 'typed-literal'},
