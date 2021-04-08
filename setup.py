@@ -9,8 +9,8 @@ setup(
     description='Handy tools to apply to Django',
     long_description=open('README.md').read(),
     install_requires=[
-        "Django==3.0",
-        "webdriver-manager==3.3.0",
-        "selenium==3.141.0"
+        "Django>=3.0",
+        "webdriver-manager>=3.2.0",
+        "selenium>=3.0.0"
     ],
 )
