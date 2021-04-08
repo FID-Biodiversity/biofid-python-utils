@@ -1,4 +1,4 @@
-from tests.base import NoDatabaseTestCase
+from biofid.tests.base import NoDatabaseTestCase
 from biofid.api.responses import modify_header_by_request_suffix
 
 

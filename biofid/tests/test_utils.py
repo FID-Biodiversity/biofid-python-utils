@@ -1,4 +1,4 @@
-from tests.base import NoDatabaseTestCase
+from biofid.tests.base import NoDatabaseTestCase
 from biofid import utils
 
 

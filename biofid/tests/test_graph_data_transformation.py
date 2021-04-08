@@ -1,4 +1,4 @@
-from tests.base import NoDatabaseTestCase
+from biofid.tests.base import NoDatabaseTestCase
 from biofid.data.transformation import graph_data_transformations
 
 data = [
