@@ -1,4 +1,7 @@
-def traverse(obj, tree_types=(list, tuple)):
+from typing import Any, Iterable, Tuple, Type
+
+
+def traverse(obj: Any, tree_types: Tuple[Type[Iterable]] = (list, tuple)):
     """ Iterates a (recursively) nested list and returns a single list over all elements.
         If the given list is not nested, nothing happens.
         Source: https://stackoverflow.com/a/6340578/7504509
