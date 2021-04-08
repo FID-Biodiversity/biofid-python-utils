@@ -8,6 +8,7 @@ setup(
     license='LICENSE.txt',
     description='Handy tools to apply to Django',
     long_description=open('README.md').read(),
+    packages=['biofid'],
     install_requires=[
         "Django>=3.0",
         "webdriver-manager>=3.2.0",
