@@ -1,5 +1,5 @@
-from biofid import utils
-from biofid.tests.base import NoDatabaseTestCase
+from tests.base import NoDatabaseTestCase
+import utils
 
 
 class TestBIOfidUtilities(NoDatabaseTestCase):
