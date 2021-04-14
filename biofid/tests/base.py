@@ -5,6 +5,10 @@ from django.test import SimpleTestCase
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from django.test import RequestFactory
+from functools import partial
+
+
+AJAX_REQUEST_HEADER = {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'}
 
 
 class NoDatabaseTestCase(SimpleTestCase):
@@ -13,6 +17,7 @@ class NoDatabaseTestCase(SimpleTestCase):
 
     def setUp(self) -> None:
         self.request_factory = RequestFactory()
+        self.ajax_request_factory = partial(RequestFactory, **AJAX_REQUEST_HEADER)
 
 
 class BiofidLiveWebsiteTestCase(LiveServerTestCase):
