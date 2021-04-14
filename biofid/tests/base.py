@@ -5,10 +5,17 @@ from django.test import SimpleTestCase
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from django.test import RequestFactory
-from functools import partial
+from typing import Any
+from django.core.handlers.wsgi import WSGIRequest
 
 
 AJAX_REQUEST_HEADER = {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'}
+
+
+class AjaxRequestFactory(RequestFactory):
+    def get(self, path: Any, data: Any = None, secure: bool = False, **extra: Any) -> WSGIRequest:
+        extra.update(AJAX_REQUEST_HEADER)
+        return super().get(path=path, data=data, secure=secure, **extra)
 
 
 class NoDatabaseTestCase(SimpleTestCase):
@@ -17,7 +24,7 @@ class NoDatabaseTestCase(SimpleTestCase):
 
     def setUp(self) -> None:
         self.request_factory = RequestFactory()
-        self.ajax_request_factory = partial(RequestFactory, **AJAX_REQUEST_HEADER)
+        self.ajax_request_factory = AjaxRequestFactory()
 
 
 class BiofidLiveWebsiteTestCase(LiveServerTestCase):
