@@ -13,6 +13,12 @@ class GraphVariable:
     def __hash__(self):
         return hash((self.label, self.language, self.uri))
 
+    def __eq__(self, other):
+        if isinstance(other, GraphVariable):
+            return self.__hash__() == other.__hash__()
+        else:
+            return False
+
 
 class Subject(GraphVariable):
     pass
@@ -35,6 +41,12 @@ class Triple:
 
     def __hash__(self):
         return hash((self.subject, self.predicate, self.object))
+
+    def __eq__(self, other):
+        if isinstance(other, Triple):
+            return self.__hash__() == other.__hash__()
+        else:
+            return False
 
 
 def get_value(data: dict) -> Any:
