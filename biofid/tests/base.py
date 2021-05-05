@@ -1,11 +1,12 @@
 from contextlib import contextmanager
+from typing import Any
+
 from django.core.handlers.wsgi import WSGIRequest
 from django.test import LiveServerTestCase
 from django.test import RequestFactory
 from django.test import SimpleTestCase
 from selenium import webdriver
 from time import sleep
-from typing import Any
 from webdriver_manager.chrome import ChromeDriverManager
 
 AJAX_REQUEST_HEADER = {'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'}
