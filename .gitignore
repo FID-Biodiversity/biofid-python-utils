@@ -3,3 +3,7 @@ __pycache__/
 venv/
 dummy/
 *.egg-info/
+biofid_python_utils/
+
+django.log
+manage.py
