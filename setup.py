@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='biofid-utils',
-    version='0.1.0',
+    version='0.1.1',
     author='Adrian Pachzelt',
     author_email='a.pachzelt@ub.uni-frankfurt.de',
     license='LICENSE.txt',
