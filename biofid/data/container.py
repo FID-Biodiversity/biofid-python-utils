@@ -16,7 +16,7 @@ def is_container(element: Any) -> bool:
 
 
 def convert_all_container_recursively(container: Iterable, conversion_type: Type) -> Any:
-    """ Converts all container within a given container into the given conversion type.
+    """ Converts all containers within a given container into the given conversion type.
         This process is recursive! The parent container itself is ALSO converted!
     """
     if is_container(container):
