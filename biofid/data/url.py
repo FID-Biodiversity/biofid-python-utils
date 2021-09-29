@@ -10,4 +10,5 @@ def is_url(string: str) -> bool:
     if localhost_regex is not None:
         return True
 
-    return re.search(r'(?:^https?://(?:www.)?|^www\.)[a-zA-Z\-]+?\.[a-z]{2,5}(?:/[a-zA-Z0-9]*)?/?$', string) is not None
+    return re.search(r'(?:^https?://(?:[sw]w[sw].)?|^www\.)[a-zA-Z-]+?\.[a-z]{2,5}(?:/[a-zA-Z0-9/-]*\.?[a-z]*|\.[a-z]+?)?/?$',
+                     string) is not None

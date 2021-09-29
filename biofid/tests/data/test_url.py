@@ -18,7 +18,10 @@ class TestUrl(NoDatabaseTestCase):
             ('https://www.biofid.de%20and%20more', False),
             ('www.biofid.de', True),
             ('www.this-is-valid.com', True),
-            ('www.com', False)
+            ('www.com', False),
+            ('https://sws.geonames.org/765280', True),
+            ('https://www.biofid.de/bio-ontologies/Tracheophyta/gbif/4928315.html', True),
+            ('https://www.wikidata.org/entity/Q1794', True)
         ]
 
         for url, expectation in testcases:
