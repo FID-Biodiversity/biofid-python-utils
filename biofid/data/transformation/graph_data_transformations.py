@@ -52,11 +52,16 @@ class Triple:
 def get_value(data: dict) -> Any:
     """ Returns the value of the given graph variable.
         Boolean Values are translated from "1" or "0" to "True" or "False", respectively.
+        If the given data does not contain a "value" keyword, None is returned.
     """
     TRUE_STRING = 'True'
     FALSE_STRING = 'False'
+    value_string = 'value'
 
-    value = data['value']
+    if data is None or value_string not in data:
+        return None
+
+    value = data[value_string]
 
     if is_boolean(data):
         return TRUE_STRING if bool(int(value)) else FALSE_STRING

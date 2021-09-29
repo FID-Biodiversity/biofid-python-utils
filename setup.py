@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='biofid-utils',
-    version='0.1.2',
+    version='0.1.3',
     author='Adrian Pachzelt',
     author_email='a.pachzelt@ub.uni-frankfurt.de',
-    license='AGPL v3',
+    license='',
     description='Handy tools to apply to Django',
     long_description=open('README.md').read(),
     packages=find_packages(),
