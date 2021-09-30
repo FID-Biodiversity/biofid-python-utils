@@ -49,22 +49,23 @@ class Triple:
             return False
 
 
-def get_value(data: dict) -> Any:
+def get_value(data: dict, default: Any = None) -> Any:
     """ Returns the value of the given graph variable.
         Boolean Values are translated from "1" or "0" to "True" or "False", respectively.
-        If the given data does not contain a "value" keyword, None is returned.
+        If the given data does not contain a "value" keyword, None is returned. If, however, the `default` parameter
+        is given, this is returned.
     """
-    TRUE_STRING = 'True'
-    FALSE_STRING = 'False'
+    true_string = 'True'
+    false_string = 'False'
     value_string = 'value'
 
     if data is None or value_string not in data:
-        return None
+        return default
 
     value = data[value_string]
 
     if is_boolean(data):
-        return TRUE_STRING if bool(int(value)) else FALSE_STRING
+        return true_string if bool(int(value)) else false_string
 
     return value
 
