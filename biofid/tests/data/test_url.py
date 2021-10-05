@@ -23,7 +23,8 @@ class TestUrl(NoDatabaseTestCase):
             ('https://www.biofid.de/bio-ontologies/Tracheophyta/gbif/4928315.html', True),
             ('https://www.wikidata.org/entity/Q1794', True),
             ('https://www.biofid.de/bio-ontologies/tracheophyta#GBIF_3119995', True),
-            (('https://www.wikidata.org/entity/Q1794',), False)
+            (('https://www.wikidata.org/entity/Q1794',), False),
+            ('https://subsubdomain.subdomain.domain.com/foo', True)
         ]
 
         for url, expectation in testcases:
