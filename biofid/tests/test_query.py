@@ -8,7 +8,8 @@ class TestQuery(NoDatabaseTestCase):
             ('foo bar', 'foo bar'),
             ('foo || bar', 'foo \|\| bar'),
             ('foo ? bar', 'foo \? bar'),
-            ('(1+1):2', '\(1\+1\)\:2')
+            ('(1+1):2', '\(1\+1\)\:2'),
+            ('"foo bar"', '"foo bar"')
         ]
 
         for solr_input, expected_result in test_cases:
