@@ -10,6 +10,7 @@ class TestQuery(NoDatabaseTestCase):
             ('foo ? bar', 'foo \? bar'),
             ('(1+1):2', '\(1\+1\)\:2'),
             ('"foo bar"', '"foo bar"'),
+            ("'foo bar'", "'foo bar'"),
             ('echo $SECRET', 'echo \$SECRET')
         ]
 

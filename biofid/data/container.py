@@ -1,4 +1,4 @@
-from typing import Any, Collection, Generator, Iterable, Type
+from typing import Any, Collection, Generator, Iterable, Type, Callable
 
 
 def convert_all_container_recursively(container: Iterable, conversion_type: Type) -> Any:
@@ -31,5 +31,27 @@ def iterate_recursively(container: Collection[Any]) -> Generator:
             yield element
 
 
+def escape_keys_and_values_of_dict(dict_to_escape: dict, escaping_function: Callable) -> dict:
+    """ Returns a new dict in which all keys and values are escaped by the given escape function.
+        All iterables that are not dicts are returned as lists.
+    """
+    new_dict = {}
+    for key, value in dict_to_escape.items():
+        escaped_key = escaping_function(key)
+
+        if isinstance(value, dict):
+            escaped_value = escape_keys_and_values_of_dict(value, escaping_function)
+        elif is_container(value):
+            escaped_value = escape_list(value, escaping_function)
+        else:
+            escaped_value = escaping_function(value)
+
+        new_dict[escaped_key] = escaped_value
+
+    return new_dict
 
 
+def escape_list(list_to_escape: list, escaping_function: Callable) -> list:
+    """ Escapes all elements of a (nested) list. """
+    return [escape_list(elem, escaping_function) if is_container(elem) else escaping_function(elem)
+            for elem in list_to_escape]

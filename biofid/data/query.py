@@ -1,5 +1,7 @@
 import re
 
+EXCLUDE_IN_SOLR_QUERY = ['qt=', 'stream.body', '/config', 'shards.qt=', 'fl=', '/update', 'shards=']
+
 
 def escape_solr_input(query: str) -> str:
     """ Escapes special characters used by Solr.
@@ -36,3 +38,16 @@ def escape_solr_input(query: str) -> str:
     """
     solr_special_characters = re.compile(r'(?<!\\)(?P<specialCharacter>[&|+\\!(){}[\]*^~?:$=])')
     return solr_special_characters.sub(r'\\\g<specialCharacter>', query)
+
+
+def is_solr_query_safe(query) -> bool:
+    """ This simple function shall protect the database from injection attacks.
+        For Solr: Relies on the tips given in https://github.com/dergachev/solr-security-proxy
+    """
+
+    lowered_query = query.lower()
+    if any(evil.lower() in lowered_query for evil in EXCLUDE_IN_SOLR_QUERY):
+        return False
+
+    # Everything was fine
+    return True

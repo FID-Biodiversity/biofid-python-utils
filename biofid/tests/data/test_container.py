@@ -7,13 +7,15 @@ class TestContainer(NoDatabaseTestCase):
         inputs = [
             ['ab', 'bc', 'cd'],
             ('ab', ('bc', 'cd'), 'de'),
-            [(1, 2), (3, 4), 5, (6, 7)]
+            [(1, 2), (3, 4), 5, (6, 7)],
+
         ]
 
         expected = [
             ['ab', 'bc', 'cd'],
             ['ab', 'bc', 'cd', 'de'],
-            [1, 2, 3, 4, 5, 6, 7]
+            [1, 2, 3, 4, 5, 6, 7],
+
         ]
 
         for inputs, expected_outcome in zip(inputs, expected):
@@ -54,3 +56,26 @@ class TestContainer(NoDatabaseTestCase):
             with self.subTest(input):
                 for elements, expected_elements in zip(container.group_elements(input, elements_per_loop), expectation):
                     self.assertEquals(elements, expected_elements)
+
+    def test_escape_keys_and_values_of_dict(self):
+        inputs = [
+            {'$foo': 'bar&'},
+            {'$foo': ['bar&', 'bu//']},
+            {'$foo': {'bar&': 'bu//'}},
+            {'$foo': {'bar&': ['bu//']}},
+        ]
+
+        expected = [
+            {'\\$foo': 'bar\\&'},
+            {'\\$foo': ['bar\\&', 'bu\\/\\/']},
+            {'\\$foo': {'bar\\&': 'bu\\/\\/'}},
+            {'\\$foo': {'bar\\&': ['bu\\/\\/']}},
+        ]
+
+        def dummy_escaping_function(text: str) -> str:
+            return text.replace('$', '\\$').replace('&', '\\&').replace('/', '\\/')
+
+        for input, expectation in zip(inputs, expected):
+            with self.subTest(input):
+                result = container.escape_keys_and_values_of_dict(input, dummy_escaping_function)
+                self.assertDictEqual(expectation, result)
