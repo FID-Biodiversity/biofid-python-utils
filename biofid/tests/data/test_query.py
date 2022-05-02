@@ -11,7 +11,8 @@ class TestQuery(NoDatabaseTestCase):
             ('(1+1):2', '\(1\+1\)\:2'),
             ('"foo bar"', '"foo bar"'),
             ("'foo bar'", "'foo bar'"),
-            ('echo $SECRET', 'echo \$SECRET')
+            ('echo $SECRET', 'echo \$SECRET'),
+            (-1, -1)
         ]
 
         for solr_input, expected_result in test_cases:

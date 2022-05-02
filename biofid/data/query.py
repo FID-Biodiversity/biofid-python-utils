@@ -36,6 +36,9 @@ def escape_solr_input(query: str) -> str:
         OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
         OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     """
+    if isinstance(query, int):
+        return query
+
     solr_special_characters = re.compile(r'(?<!\\)(?P<specialCharacter>[&|+\\!(){}[\]*^~?:$=])')
     return solr_special_characters.sub(r'\\\g<specialCharacter>', query)
 
