@@ -18,3 +18,16 @@ class TestQuery(NoDatabaseTestCase):
         for solr_input, expected_result in test_cases:
             with self.subTest(solr_input):
                 self.assertEquals(expected_result, query.escape_solr_input(solr_input))
+
+    def test_escape_sparql_string(self):
+        test_cases = [
+            ('https://www.biofid.de/bio-ontologies/Tracheophyta/gbif/12345',
+             'https://www.biofid.de/bio-ontologies/Tracheophyta/gbif/12345'),
+            ('http://www.wikidata.org/entity/Q12345', 'http://www.wikidata.org/entity/Q12345'),
+            ('Some arbitrary code including \' and ", but also \\. """',
+             'Some arbitrary code including \\\' and \\", but also \\\\. \\"\\"\\"')
+        ]
+
+        for string, escaped_string in test_cases:
+            with self.subTest(string):
+                self.assertEquals(query.escape_sparql_string(string), escaped_string)

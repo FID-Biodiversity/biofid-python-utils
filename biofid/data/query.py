@@ -54,3 +54,18 @@ def is_solr_query_safe(query) -> bool:
 
     # Everything was fine
     return True
+
+
+def escape_sparql_string(text: str) -> str:
+    """ Escapes dangerous characters in the given text string.
+        Escaped characters:
+            * Single quotes
+            * Double quotes
+            * Backslashes
+    """
+    characters_to_escape = ['\\', '\'', '\"']  # backslash has to be the first escaped character!
+
+    for char in characters_to_escape:
+        text = text.replace(char, f'\\{char}')
+
+    return text

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='biofid-utils',
+    name='biofid-python-utils',
     version='0.2',
     author='Adrian Pachzelt',
     author_email='a.pachzelt@ub.uni-frankfurt.de',
