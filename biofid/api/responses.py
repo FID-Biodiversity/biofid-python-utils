@@ -1,4 +1,3 @@
-import re
 from typing import Optional
 
 from django.http import HttpRequest
@@ -40,5 +39,5 @@ def extract_suffix_from_string(text: str) -> Optional[str]:
         Only the suffix is returned. The leading period is skipped!
         Returns None, if no suffix is present.
     """
-    suffix = re.search(r'(?<=\.)[a-z]*?$', text)
-    return suffix.group() if suffix is not None else None
+    suffix = text.rsplit('.', maxsplit=1)
+    return suffix[-1] if suffix else None
