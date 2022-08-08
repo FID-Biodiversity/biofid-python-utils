@@ -11,7 +11,12 @@ setup(
     packages=find_packages(),
     install_requires=[
         "Django>=3.0",
-        "webdriver-manager>=3.2.0",
-        "selenium>=3.0.0"
     ],
+    extras_require={
+        'dev': [
+            "webdriver-manager>=3.2.0",
+            "selenium>=3.0.0",
+            'pytest-django'
+        ]
+    }
 )

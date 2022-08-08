@@ -13,8 +13,8 @@ class TestApi(NoDatabaseTestCase):
         for test_url, expected_header in zip(test_urls, expected_headers):
             with self.subTest(msg=f'URL "{test_url}"'):
                 request = self.request_factory.get(test_url, **header)
-                self.assertEquals(request.META['HTTP_ACCEPT'], 'application/html')
+                self.assertEqual(request.META['HTTP_ACCEPT'], 'application/html')
 
                 modify_header_by_request_suffix(request)
 
-                self.assertEquals(request.META['HTTP_ACCEPT'], expected_header)
+                self.assertEqual(request.META['HTTP_ACCEPT'], expected_header)

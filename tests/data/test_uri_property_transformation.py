@@ -43,19 +43,19 @@ class TestUriPropertyTransformation(NoDatabaseTestCase):
     def test_predicate_label_and_language_extraction(self):
         for input_data, expected_label_and_language in zip(label_data, expected_labels_and_languages):
             with self.subTest():
-                self.assertEquals(UriPropertyTransformation().get_label_and_language(input_data),
+                self.assertEqual(UriPropertyTransformation().get_label_and_language(input_data),
                                   expected_label_and_language)
 
     def test_predicate_creation(self):
         for input_data, expected_instance in zip(predicate_data, expected_predicate_instances):
             with self.subTest():
                 predicate = UriPropertyTransformation().create_predicate(input_data)
-                self.assertEquals(predicate, expected_instance)
+                self.assertEqual(predicate, expected_instance)
                 self.assertTrue(isinstance(predicate, Predicate))
 
     def test_object_creation(self):
         for input_data, expected_instance in zip(object_data, expected_object_instances):
             with self.subTest():
                 object_instance = UriPropertyTransformation().create_object(input_data)
-                self.assertEquals(object_instance, expected_instance)
+                self.assertEqual(object_instance, expected_instance)
                 self.assertTrue(isinstance(object_instance, Object))

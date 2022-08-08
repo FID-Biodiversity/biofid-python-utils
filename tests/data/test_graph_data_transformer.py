@@ -36,5 +36,5 @@ class TestGraphDataTransformer(NoDatabaseTestCase):
     def test_uri_property_transformation(self):
         property_data = DataTransformer.transform(graph_response_data, UriPropertyTransformation)
 
-        self.assertEquals(len(property_data), 2)
-        self.assertEquals(property_data, expected_triples)
+        self.assertEqual(len(property_data), 2)
+        self.assertEqual(property_data, expected_triples)

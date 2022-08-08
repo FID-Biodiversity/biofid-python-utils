@@ -17,7 +17,7 @@ class TestQuery(NoDatabaseTestCase):
 
         for solr_input, expected_result in test_cases:
             with self.subTest(solr_input):
-                self.assertEquals(expected_result, query.escape_solr_input(solr_input))
+                self.assertEqual(expected_result, query.escape_solr_input(solr_input))
 
     def test_escape_sparql_string(self):
         test_cases = [
@@ -30,4 +30,4 @@ class TestQuery(NoDatabaseTestCase):
 
         for string, escaped_string in test_cases:
             with self.subTest(string):
-                self.assertEquals(query.escape_sparql_string(string), escaped_string)
+                self.assertEqual(query.escape_sparql_string(string), escaped_string)

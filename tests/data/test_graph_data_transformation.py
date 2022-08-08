@@ -31,14 +31,14 @@ create_objects_test_data = {'predicate': {'type': 'uri', 'value': 'https://www.b
 def run_subtests(test_class, input, expected, func):
     for input, expected_output in zip(input, expected):
         with test_class.subTest(msg=f"Input: {input}; Expected: {expected_output}"):
-            test_class.assertEquals(func(input), expected_output)
+            test_class.assertEqual(func(input), expected_output)
 
 
 def assert_object_correct(test_class, created_object, object_type, expected_label, expected_language, expected_uri):
     test_class.assertTrue(isinstance(created_object, object_type))
-    test_class.assertEquals(created_object.uri, expected_uri)
-    test_class.assertEquals(created_object.label, expected_label)
-    test_class.assertEquals(created_object.language, expected_language)
+    test_class.assertEqual(created_object.uri, expected_uri)
+    test_class.assertEqual(created_object.label, expected_label)
+    test_class.assertEqual(created_object.language, expected_language)
 
 
 class TestGraphDataTransformation(NoDatabaseTestCase):

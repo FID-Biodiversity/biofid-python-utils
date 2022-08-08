@@ -20,7 +20,7 @@ class TestContainer(NoDatabaseTestCase):
 
         for inputs, expected_outcome in zip(inputs, expected):
             with self.subTest(input):
-                self.assertEquals(list(container.iterate_recursively(inputs)), expected_outcome)
+                self.assertEqual(list(container.iterate_recursively(inputs)), expected_outcome)
 
     def test_convert_all_container_recursively_to_tuple(self):
         inputs = [
@@ -35,7 +35,7 @@ class TestContainer(NoDatabaseTestCase):
 
         for input, expectation in zip(inputs, expected):
             with self.subTest(input):
-                self.assertEquals(container.convert_all_container_recursively(input, tuple), expectation)
+                self.assertEqual(container.convert_all_container_recursively(input, tuple), expectation)
 
     def test_group_elements(self):
         inputs = [
@@ -55,7 +55,7 @@ class TestContainer(NoDatabaseTestCase):
         for input, expectation, elements_per_loop in zip(inputs, expected, number_of_elements_per_loop):
             with self.subTest(input):
                 for elements, expected_elements in zip(container.group_elements(input, elements_per_loop), expectation):
-                    self.assertEquals(elements, expected_elements)
+                    self.assertEqual(elements, expected_elements)
 
     def test_escape_keys_and_values_of_dict(self):
         inputs = [

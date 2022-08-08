@@ -29,4 +29,4 @@ class TestUrl(NoDatabaseTestCase):
 
         for url, expectation in testcases:
             with self.subTest(url):
-                self.assertEquals(url_module.is_url(url), expectation)
+                self.assertEqual(url_module.is_url(url), expectation)
