@@ -96,6 +96,23 @@ class TestDataExtractionFromRequest:
                 ),
                 ([1.0, 2.0, 3.0],),
             ),
+            # Scenario - Parameter includes boolean
+            (
+                    {"isTrue": True, "isFalse": False},
+                    (
+                            {
+                                "name": "isTrue",
+                                "parameter_type": bool,
+                                "optional": False,
+                            },
+                            {
+                                "name": "isFalse",
+                                "parameter_type": bool,
+                                "optional": False,
+                            },
+                    ),
+                    (True, False),
+            ),
         ],
         indirect=["request_data"],
     )

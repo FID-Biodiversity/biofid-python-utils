@@ -17,9 +17,8 @@ def get_from_data(
 ) -> Any:
     """Accesses the parameter with `name` in the `data` and returns its value.
     If the given `name` is NOT present in `data` and `optional` is True, the `default` is returned.
-    In the same scenario, if `optional` is False (default), an LookupError is raised.
-    If `parameter_type` is given, the parameter value will be converted into this type. If this is not possible (i.e.
-    the parameter value is not of the given type, a ValueError will be raised.
+    :raises UserInputException: If a required parameter is not given or if a given parameter value is not of
+    the required type.
     If `is_list` is True, a list of all parameters of the given `name` will be converted to `parameter_type` (if given)
     and returned in a list.
     This method does NO sanitizing, except for making sure that the requested type is given!
@@ -37,6 +36,8 @@ def get_from_data(
         try:
             if isinstance(parameter_value, list):
                 parameter_value = [parameter_type(value) for value in parameter_value]
+            elif parameter_type == bool:
+                parameter_value = str(parameter_value).lower() in {'true', 't', '1', 'yes'}
             else:
                 parameter_value = parameter_type(parameter_value)
         except ValueError:
