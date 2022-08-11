@@ -1,9 +1,10 @@
 import re
 
 EXCLUDE_IN_SOLR_QUERY = ['qt=', 'stream.body', '/config', 'shards.qt=', 'fl=', '/update', 'shards=']
+SOLR_SPECIAL_CHARACTERS = '&|+\\!(){}[\]*^~?:$='
 
 
-def escape_solr_input(query: str) -> str:
+def escape_solr_input(query: str, escape_characters: str = SOLR_SPECIAL_CHARACTERS) -> str:
     """ Escapes special characters used by Solr.
 
         Regex taken from: https://github.com/swistakm/solrq (BSD 3-Clause License)
@@ -39,7 +40,7 @@ def escape_solr_input(query: str) -> str:
     if isinstance(query, int):
         return query
 
-    solr_special_characters = re.compile(r'(?<!\\)(?P<specialCharacter>[&|+\\!(){}[\]*^~?:$=])')
+    solr_special_characters = re.compile(rf'(?<!\\)(?P<specialCharacter>[{escape_characters}])')
     return solr_special_characters.sub(r'\\\g<specialCharacter>', query)
 
 
