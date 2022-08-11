@@ -14,6 +14,7 @@ def get_from_data(
     is_list: bool = False,
     optional: bool = False,
     default: Any = None,
+    escape_function: Callable = None
 ) -> Any:
     """Accesses the parameter with `name` in the `data` and returns its value.
     If the given `name` is NOT present in `data` and `optional` is True, the `default` is returned.
@@ -46,6 +47,9 @@ def get_from_data(
                     name=name, parameter_type=parameter_type.__name__
                 )
             )
+
+    if escape_function is not None:
+        parameter_value = escape_function(parameter_value)
 
     return parameter_value
 

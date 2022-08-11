@@ -10,6 +10,10 @@ GET_STRING = "GET"
 POST_STRING = "POST"
 
 
+def dummy_escape_function(term: str) -> str:
+    return term.replace('\\', '\\\\').replace('$', '\\$')
+
+
 class TestDataExtractionFromRequest:
     @pytest.mark.parametrize(
         ["request_data", "function_parameters", "expected_values"],
@@ -98,21 +102,32 @@ class TestDataExtractionFromRequest:
             ),
             # Scenario - Parameter includes boolean
             (
-                    {"isTrue": True, "isFalse": False},
-                    (
-                            {
-                                "name": "isTrue",
-                                "parameter_type": bool,
-                                "optional": False,
-                            },
-                            {
-                                "name": "isFalse",
-                                "parameter_type": bool,
-                                "optional": False,
-                            },
-                    ),
-                    (True, False),
+                {"isTrue": True, "isFalse": False},
+                (
+                    {
+                        "name": "isTrue",
+                        "parameter_type": bool,
+                        "optional": False,
+                    },
+                    {
+                        "name": "isFalse",
+                        "parameter_type": bool,
+                        "optional": False,
+                    },
+                ),
+                (True, False),
             ),
+            # Scenario - Escape function given
+            (
+               {'term': 'Some \\ string with intere$ting ch4racters!'},
+               (
+                    {
+                        'name': 'term',
+                        'escape_function': dummy_escape_function
+                    },
+               ),
+               ('Some \\\\ string with intere\\$ting ch4racters!',)
+            )
         ],
         indirect=["request_data"],
     )
