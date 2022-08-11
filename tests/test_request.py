@@ -127,6 +127,19 @@ class TestDataExtractionFromRequest:
                     },
                ),
                ('Some \\\\ string with intere\\$ting ch4racters!',)
+            ),
+            # Scenario - Do not escape default values
+            (
+                    {},
+                    (
+                            {
+                                'name': 'term',
+                                'optional': True,
+                                'default': '$$$',
+                                'escape_function': dummy_escape_function
+                            },
+                    ),
+                    ('$$$',)
             )
         ],
         indirect=["request_data"],

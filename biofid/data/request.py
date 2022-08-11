@@ -48,7 +48,7 @@ def get_from_data(
                 )
             )
 
-    if escape_function is not None:
+    if escape_function is not None and parameter_value != default:
         parameter_value = escape_function(parameter_value)
 
     return parameter_value
