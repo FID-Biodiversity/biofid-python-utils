@@ -8,7 +8,7 @@ setup(
     license="",
     description="Handy tools to apply to Django",
     long_description=open("README.md").read(),
-    packages=find_packages(where="biofid", exclude='./tests'),
+    packages=find_packages(exclude='./tests'),
     install_requires=[
         "Django>=3.0",
     ],
